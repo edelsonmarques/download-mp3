@@ -54,7 +54,7 @@ public class DownloadController {
         request.setOption("audio-format", "mp3");
         request.setOption("audio-quality", "0");
         
-        request.setOption("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
+        request.setOption("user-agent", "\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36\"");
         request.setOption("no-check-certificates");
         request.setOption("prefer-insecure");
         
@@ -109,7 +109,7 @@ public class DownloadController {
         request.setOption("audio-format", "mp3");
         request.setOption("audio-quality", "0");
         
-        request.setOption("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
+        request.setOption("user-agent", "\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36\"");
         request.setOption("no-check-certificates");
         request.setOption("prefer-insecure");
         
