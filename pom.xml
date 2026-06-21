@@ -145,6 +145,11 @@
                                     </excludes>
                                 </filter>
                             </filters>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>com.jfposton.ytdlp.YtDlpApplication</mainClass>
+                                </transformer>
+                            </transformers>
                             <finalName>yt-dlp-java-${project.version}</finalName>
                         </configuration>
                     </execution>
@@ -157,7 +162,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.jfposton.ytdlp.YtDlpMain</mainClass>
+                            <mainClass>com.jfposton.ytdlp.YtDlpApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

@@ -46,5 +46,5 @@ ENV FFMPEG_PATH=/usr/bin/ffmpeg
 ENV YTDLP_PATH=/usr/local/bin/yt-dlp
 ENV TEMP_DIR=/tmp/downloads
 
-# Command para rodar a aplicação
+# Command para rodar a aplicação Spring Boot
 ENTRYPOINT ["java", "-jar", "app.jar"]
