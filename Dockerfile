@@ -32,8 +32,8 @@ RUN pip3 install --no-cache-dir --break-system-packages yt-dlp
 
 WORKDIR /app
 
-# Copiar o JAR do builder
-COPY --from=builder /app/target/yt-dlp-java-*.jar app.jar
+# Copiar o JAR do builder (Spring Boot plugin gera JAR executável)
+COPY --from=builder /app/target/*.jar app.jar
 
 # Criar diretório para downloads temporários
 RUN mkdir -p /tmp/downloads
