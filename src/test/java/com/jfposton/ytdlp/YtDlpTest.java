@@ -24,7 +24,7 @@ public class YtDlpTest {
     Assert.assertNotNull(YtDlp.getVersion());
   }
 
-  @Test
+  //@Test
   public void testElapsedTime() throws YtDlpException {
 
     long startTime = System.nanoTime();

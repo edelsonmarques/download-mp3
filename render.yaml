@@ -1,0 +1,33 @@
+# Render Blueprint Configuration
+# https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    name: yt-dlp-java
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    
+    # Variáveis de ambiente
+    envVars:
+      - key: FFMPEG_PATH
+        value: /usr/bin/ffmpeg
+      - key: YTDLP_PATH
+        value: /usr/local/bin/yt-dlp
+      - key: TEMP_DIR
+        value: /tmp/downloads
+      - key: JAVA_OPTS
+        value: -Xmx512m -Xms256m
+    
+    # Configurações de health check
+    healthCheckPath: /actuator/health
+    
+    # Região
+    region: oregon
+    
+    # Configurações de build
+    buildCommand: mvn clean package -DskipTests
+    
+    # Comando de start
+    # (O Dockerfile já define o ENTRYPOINT)

@@ -1,0 +1,38 @@
+# fly.toml app configuration file for Fly.io
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+
+app = "yt-dlp-java"
+primary_region = "gru"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  FFMPEG_PATH = "/usr/bin/ffmpeg"
+  YTDLP_PATH = "/usr/local/bin/yt-dlp"
+  TEMP_DIR = "/tmp/downloads"
+  JAVA_OPTS = "-Xmx512m -Xms256m"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+[[http_service.checks]]
+  interval = "30s"
+  timeout = "10s"
+  grace_period = "5s"
+  method = "GET"
+  path = "/actuator/health"
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 512
+
+[mounts]
+  source = "temp_downloads"
+  destination = "/tmp/downloads"
