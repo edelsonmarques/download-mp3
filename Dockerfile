@@ -28,7 +28,7 @@ RUN apk add --no-cache \
     && rm -rf /var/cache/apk/*
 
 # Instalar yt-dlp
-RUN pip3 install --no-cache-dir yt-dlp
+RUN pip3 install --no-cache-dir --break-system-packages yt-dlp
 
 WORKDIR /app
 
