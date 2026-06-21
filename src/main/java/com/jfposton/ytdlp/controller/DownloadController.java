@@ -6,6 +6,8 @@ import com.jfposton.ytdlp.YtDlpResponse;
 import com.jfposton.ytdlp.dto.DownloadRequest;
 import com.jfposton.ytdlp.dto.DownloadResponse;
 import jakarta.annotation.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -27,6 +29,8 @@ import java.util.stream.Stream;
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
 public class DownloadController {
+
+    private static final Logger logger = LoggerFactory.getLogger(DownloadController.class);
 
     @GetMapping("/health")
     public ResponseEntity<String> health() {
@@ -86,6 +90,7 @@ public class DownloadController {
         try {
             Files.createDirectories(downloadDir);
         } catch (Exception e) {
+            logger.error("Erro ao criar diretório temporário: {}", e.getMessage(), e);
             return ResponseEntity.status(500).build();
         }
 
@@ -156,6 +161,7 @@ public class DownloadController {
             }
 
         } catch (Exception e) {
+            logger.error("Erro ao processar download-stream: {}", e.getMessage(), e);
             // Limpar diretório temporário em caso de erro
             try {
                 if (Files.exists(downloadDir)) {
@@ -166,7 +172,7 @@ public class DownloadController {
                     }
                 }
             } catch (Exception ex) {
-                // Ignorar erro na limpeza
+                logger.error("Erro ao limpar diretório temporário: {}", ex.getMessage(), ex);
             }
             return ResponseEntity.status(500).build();
         }
